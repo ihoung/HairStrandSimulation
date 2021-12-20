@@ -1,5 +1,4 @@
-/build/
-/Houdini_Test/backup/
+*build
 
 # Compiled Object files
 *.slo
@@ -31,7 +30,7 @@ Makefile
 *.sln
 *.user
 *.filters
-/.vs/
+*.vs
 
 # Executables
 *.exe
@@ -56,4 +55,3 @@ CMakeScripts
 Makefile
 cmake_install.cmake
 install_manifest.txt
-build*
