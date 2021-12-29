@@ -21,9 +21,13 @@ set(TargetName HairSimulation)
 find_package(NGL CONFIG REQUIRED)
 # Instruct CMake to run moc automatically when needed (Qt projects only)
 set(CMAKE_AUTOMOC ON)
+set(CMAKE_AUTORCC ON)
+# Run the uic tools and search in the ui folder
+set(CMAKE_AUTOUIC ON)
+set(CMAKE_AUTOUIC_SEARCH_PATHS ${PROJECT_SOURCE_DIR}/ui)
 # find Qt libs
 # find Qt libs first we check for Version 6
-find_package(Qt6 COMPONENTS OpenGL Widgets QUIET )
+find_package(Qt6 COMPONENTS OpenGL Widgets OpenGLWidgets QUIET )
 if ( Qt6_FOUND )
     message("Found Qt6 Using that")
 else()
@@ -42,13 +46,19 @@ add_executable(${TargetName})
 include_directories(include $ENV{HOME}/NGL/include)
 target_sources(${TargetName} PRIVATE ${PROJECT_SOURCE_DIR}/src/main.cpp  
 			${PROJECT_SOURCE_DIR}/src/NGLScene.cpp  
+                        ${PROJECT_SOURCE_DIR}/src/MainWindow.cpp
 			${PROJECT_SOURCE_DIR}/src/NGLSceneMouseControls.cpp 
 			${PROJECT_SOURCE_DIR}/src/Random.cpp  
 			${PROJECT_SOURCE_DIR}/include/NGLScene.h
+                        ${PROJECT_SOURCE_DIR}/include/MainWindow.h
 			${PROJECT_SOURCE_DIR}/include/Random.h  
 )
 
-target_link_libraries(${TargetName} PRIVATE Qt::Widgets Qt::OpenGL NGL)
+if ( Qt6_FOUND )
+	target_link_libraries(${TargetName} PRIVATE  NGL Qt::Widgets Qt::OpenGL Qt::OpenGLWidgets)
+else()
+	target_link_libraries(${TargetName} PRIVATE  NGL Qt::Widgets Qt::OpenGL )
+endif()
 
 add_custom_target(${TargetName}CopyShaders ALL
    COMMAND ${CMAKE_COMMAND} -E copy_directory
