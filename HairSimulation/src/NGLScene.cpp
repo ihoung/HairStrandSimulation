@@ -7,10 +7,9 @@
 #include <ngl/ShaderLib.h>
 #include <iostream>
 
-NGLScene::NGLScene()
+NGLScene::NGLScene(QWidget *_parent) :QOpenGLWidget(_parent)
 {
-  // re-size the widget to that of the parent (in this case the GLFrame passed in on construction)
-  setTitle("Hair Simulation");
+
 }
 
 

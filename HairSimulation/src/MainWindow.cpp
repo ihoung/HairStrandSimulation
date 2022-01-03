@@ -6,10 +6,13 @@ MainWindow::MainWindow(QWidget *parent)
   , ui(new Ui::MainWindow)
 {
   ui->setupUi(this);
+  m_gl = new NGLScene(this);
+  ui->m_mainWndGridLayout->addWidget(m_gl, 0, 0, 4, 4);
 }
 
 MainWindow::~MainWindow()
 {
   delete ui;
+  delete m_gl;
 }
 
