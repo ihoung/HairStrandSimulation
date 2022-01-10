@@ -65,3 +65,14 @@ add_custom_target(${TargetName}CopyShaders ALL
    ${CMAKE_CURRENT_SOURCE_DIR}/shaders
    $<TARGET_FILE_DIR:${TargetName}>/shaders
 )
+
+#################################################################################
+# Testing code
+#################################################################################
+find_package(GTest CONFIG REQUIRED)
+include(GoogleTest)
+enable_testing()
+add_executable(HairSimulationTests)
+target_sources(HairSimulationTests PRIVATE ${PROJECT_SOURCE_DIR}/tests/HairTests.cpp)
+target_link_libraries(HairSimulationTests PRIVATE GTest::gtest GTest::gtest_main)
+gtest_discover_tests(HairSimulationTests)
