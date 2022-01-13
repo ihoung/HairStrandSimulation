@@ -26,7 +26,7 @@ void NGLScene::resizeGL(int _w , int _h)
   m_win.height = static_cast<int>( _h * devicePixelRatio() );
 }
 
-const auto ColourShader="ColourShader";
+const auto HairShader ="HairShader";
 
 void NGLScene::initializeGL()
 {
@@ -39,11 +39,10 @@ void NGLScene::initializeGL()
   // enable multisampling for smoother drawing
   glEnable(GL_MULTISAMPLE);
 
-  // ngl::ShaderLib::loadShader(ColourShader, "shaders/ColourVertex.glsl", "shaders/ColourFragment.glsl");
-  // ngl::ShaderLib::use(ColourShader);
-  // m_emitter = std::make_unique<Emitter>(500,ngl::Vec3(0,10,0));
+   ngl::ShaderLib::loadShader(HairShader, "shaders/HairVertex.glsl", "shaders/HairFragment.glsl");
+   ngl::ShaderLib::use(HairShader);
   // startTimer(10);
-  // ngl::VAOPrimitives::createSphere("sphere", 0.05f, 100);
+   m_strand = std::make_unique<HairStrand>(10, 5.0f);
 }
 
 
@@ -53,8 +52,7 @@ void NGLScene::paintGL()
   // clear the screen and depth buffer
   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
   glViewport(0,0,m_win.width,m_win.height);
-  // ngl::VAOPrimitives::draw("sphere");
-  // m_emitter->render();
+  m_strand->render();
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -82,6 +80,5 @@ void NGLScene::keyPressEvent(QKeyEvent *_event)
 
 void NGLScene::timerEvent(QTimerEvent *_timer)
 {
-  // m_emitter->update();
-  // update();
+   update();
 }

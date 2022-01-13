@@ -17,6 +17,7 @@
 /// @brief our main glwindow widget for NGL applications all drawing elements are
 /// put in this file
 //----------------------------------------------------------------------------------------------------------------------
+#include "HairStrand.h"
 
 class NGLScene : public QOpenGLWidget
 {
@@ -82,6 +83,8 @@ private:
     WinParams m_win;
     /// position for our model
     ngl::Vec3 m_modelPos;
+
+    std::unique_ptr<HairStrand> m_strand;
 };
 
 

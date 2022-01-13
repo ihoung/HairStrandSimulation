@@ -48,11 +48,13 @@ target_sources(${TargetName} PRIVATE ${PROJECT_SOURCE_DIR}/src/main.cpp
 			${PROJECT_SOURCE_DIR}/src/NGLScene.cpp  
             ${PROJECT_SOURCE_DIR}/src/MainWindow.cpp
 			${PROJECT_SOURCE_DIR}/src/NGLSceneMouseControls.cpp 
-			${PROJECT_SOURCE_DIR}/src/Random.cpp  
+			${PROJECT_SOURCE_DIR}/src/Random.cpp 
+			${PROJECT_SOURCE_DIR}/src/HairStrand.cpp
 			${PROJECT_SOURCE_DIR}/include/NGLScene.h
 			${PROJECT_SOURCE_DIR}/include/MainWindow.h
 			${PROJECT_SOURCE_DIR}/include/Random.h  
-)
+			${PROJECT_SOURCE_DIR}/include/Particle.h 
+			${PROJECT_SOURCE_DIR}/include/HairStrand.h)
 
 if ( Qt6_FOUND )
 	target_link_libraries(${TargetName} PRIVATE  NGL Qt::Widgets Qt::OpenGL Qt::OpenGLWidgets)
@@ -73,6 +75,9 @@ find_package(GTest CONFIG REQUIRED)
 include(GoogleTest)
 enable_testing()
 add_executable(HairSimulationTests)
-target_sources(HairSimulationTests PRIVATE ${PROJECT_SOURCE_DIR}/tests/HairTests.cpp)
+target_sources(HairSimulationTests PRIVATE ${PROJECT_SOURCE_DIR}/tests/HairTests.cpp
+											${PROJECT_SOURCE_DIR}/src/HairStrand.cpp
+											${PROJECT_SOURCE_DIR}/include/Particle.h 
+											${PROJECT_SOURCE_DIR}/include/HairStrand.h)
 target_link_libraries(HairSimulationTests PRIVATE GTest::gtest GTest::gtest_main)
 gtest_discover_tests(HairSimulationTests)
