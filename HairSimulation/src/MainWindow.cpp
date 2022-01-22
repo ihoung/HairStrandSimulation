@@ -21,5 +21,7 @@ MainWindow::~MainWindow()
 void MainWindow::connectUI()
 {
   connect(ui->m_resetCamera, SIGNAL(clicked()), m_gl, SLOT(resetCamera()));
+  connect(ui->m_hairPrecisionSlider, SIGNAL(valueChanged(int)), m_gl, SLOT(changeHairPrecision(int)));
+  connect(ui->m_hairLengthSlider, SIGNAL(valueChanged(int)), m_gl, SLOT(changeHairLength(int)));
 }
 

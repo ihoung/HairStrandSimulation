@@ -45,8 +45,8 @@ void NGLScene::initializeGL()
    ngl::ShaderLib::loadShader(HairShader, "shaders/HairVertex.glsl", "shaders/HairFragment.glsl");
    ngl::ShaderLib::use(HairShader);
   // startTimer(10);
-   m_strand = std::make_unique<HairStrand>(10, 5.0f);
 
+   m_strand = std::make_unique<HairStrand>(10, 5.0f);
 }
 
 
@@ -110,5 +110,17 @@ void NGLScene::timerEvent(QTimerEvent *_timer)
 void NGLScene::resetCamera()
 {
   m_mainCamera->setCamera(CAMERA_EYE, CAMERA_CENTER, CAMERA_UP);
+  update();
+}
+
+void NGLScene::changeHairPrecision(int _value)
+{
+  m_strand->changeParticleNum(_value);
+  update();
+}
+
+void NGLScene::changeHairLength(int _value)
+{
+  m_strand->changeLength((float)_value/50.0f);
   update();
 }

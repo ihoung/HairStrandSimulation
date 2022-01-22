@@ -49,6 +49,8 @@ class NGLScene : public QOpenGLWidget
 
 public slots:
     void resetCamera();
+    void changeHairPrecision(int);
+    void changeHairLength(int);
 
 private:
 
