@@ -46,7 +46,7 @@ void HairStrand::resetHairStrand()
 {
   m_points.resize(m_numParticles);
   float curPosY = 3.0f;
-  float pDistance = m_length / (float)m_numParticles;
+  float pDistance = m_length / (float)(m_numParticles - 1);
   for (std::uint32_t i = 0; i < m_numParticles; ++i)
   {
     m_points[i]=Particle({ 0, curPosY, 0 });
