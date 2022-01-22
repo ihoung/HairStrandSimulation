@@ -17,10 +17,12 @@
 /// @brief our main glwindow widget for NGL applications all drawing elements are
 /// put in this file
 //----------------------------------------------------------------------------------------------------------------------
+#include "Camera.h"
 #include "HairStrand.h"
 
 class NGLScene : public QOpenGLWidget
 {
+  Q_OBJECT
   public:
     //----------------------------------------------------------------------------------------------------------------------
     /// @brief ctor for our NGL drawing class
@@ -45,6 +47,9 @@ class NGLScene : public QOpenGLWidget
     //----------------------------------------------------------------------------------------------------------------------
     void resizeGL(int _w, int _h) override;
 
+public slots:
+    void resetCamera();
+
 private:
 
     //----------------------------------------------------------------------------------------------------------------------
@@ -52,6 +57,7 @@ private:
     /// @param [in] _event the Qt event to query for size etc
     //----------------------------------------------------------------------------------------------------------------------
     void keyPressEvent(QKeyEvent *_event) override;
+    void keyReleaseEvent(QKeyEvent *_event) override;
     //----------------------------------------------------------------------------------------------------------------------
     /// @brief this method is called every time a mouse is moved
     /// @param _event the Qt Event structure
@@ -83,6 +89,13 @@ private:
     WinParams m_win;
     /// position for our model
     ngl::Vec3 m_modelPos;
+
+    // default camera parameters
+    const ngl::Vec3 CAMERA_EYE{ 0,0,10 };
+    const ngl::Vec3 CAMERA_CENTER{ 0,0,0 };
+    const ngl::Vec3 CAMERA_UP{ 0,1,0 };
+    // main camera
+    std::unique_ptr<Camera> m_mainCamera;
 
     std::unique_ptr<HairStrand> m_strand;
 };

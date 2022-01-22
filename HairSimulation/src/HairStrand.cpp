@@ -5,10 +5,8 @@
 #include <ngl/Util.h>
 #include <ngl/VAOFactory.h>
 
-HairStrand::HairStrand(std::size_t _numParticles, float totalLength)
+HairStrand::HairStrand(std::size_t _numParticles, float totalLength) :m_numParticles{ _numParticles }, m_length{totalLength}
 {
-  m_numParticles = _numParticles;
-
   float curPosY = 0.0f;
   float pDistance = totalLength / (float)_numParticles;
   for (std::uint32_t i = 0; i < _numParticles; ++i)
@@ -25,11 +23,11 @@ HairStrand::HairStrand(std::size_t _numParticles, float totalLength)
   m_vao = ngl::VAOFactory::createVAO(ngl::simpleIndexVAO, GL_LINES);
 }
 
-void HairStrand::render() const
+void HairStrand::render(ngl::Mat4 _view, ngl::Mat4 _project) const
 {
-  auto view = ngl::lookAt({ 5,15,25 }, { 0,0,0 }, { 0,1,0 });
-  auto project = ngl::perspective(45.0f, 1.0f, 0.1f, 200.0f);
-  ngl::ShaderLib::setUniform("MVP", project * view);
+  //auto view = ngl::lookAt({ 5,15,25 }, { 0,0,0 }, { 0,1,0 });
+  //auto project = ngl::perspective(45.0f, 1.0f, 0.1f, 200.0f);
+  ngl::ShaderLib::setUniform("MVP", _project * _view);
   glPointSize(3);
   m_vao->bind();
   m_vao->setData(ngl::SimpleIndexVAO::VertexData(m_numParticles * sizeof(ngl::Vec3), m_points[0].pos.m_x, sizeof(m_indexes), &m_indexes[0], GL_UNSIGNED_INT));

@@ -19,5 +19,6 @@ public:
 private:
   Ui::MainWindow *ui;
   NGLScene *m_gl;
+  void connectUI();
 };
 #endif // MAINWINDOW_H

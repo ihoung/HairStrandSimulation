@@ -8,25 +8,41 @@ void NGLScene::mouseMoveEvent( QMouseEvent* _event )
   // note the method buttons() is the button state when event was called
   // that is different from button() which is used to check which button was
   // pressed when the mousePress/Release event is generated
-  if ( m_win.rotate && _event->buttons() == Qt::LeftButton )
+  if (m_win.rotate && _event->buttons() == Qt::LeftButton)
   {
     int diffx = _event->x() - m_win.origX;
     int diffy = _event->y() - m_win.origY;
-    m_win.spinXFace += static_cast<int>( 0.5f * diffy );
-    m_win.spinYFace += static_cast<int>( 0.5f * diffx );
     m_win.origX = _event->x();
     m_win.origY = _event->y();
+
+    if (m_win.camera_mode)
+    {
+      m_mainCamera->spinCamera({ INCREMENT * diffx, INCREMENT * diffy });
+    }
+    else
+    {
+      m_win.spinXFace += static_cast<int>(0.5f * diffy);
+      m_win.spinYFace += static_cast<int>(0.5f * diffx);
+    }
     update();
   }
   // right mouse translate code
   else if ( m_win.translate && _event->buttons() == Qt::RightButton )
   {
-    int diffX      = static_cast<int>( _event->x() - m_win.origXPos );
-    int diffY      = static_cast<int>( _event->y() - m_win.origYPos );
+    int diffX = static_cast<int>(_event->x() - m_win.origXPos);
+    int diffY = static_cast<int>(_event->y() - m_win.origYPos);
     m_win.origXPos = _event->x();
     m_win.origYPos = _event->y();
-    m_modelPos.m_x += INCREMENT * diffX;
-    m_modelPos.m_y -= INCREMENT * diffY;
+
+    if (m_win.camera_mode)
+    {
+      m_mainCamera->translateCamera({ INCREMENT * diffX, INCREMENT * diffY });
+    }
+    else
+    {
+      m_modelPos.m_x += INCREMENT * diffX;
+      m_modelPos.m_y -= INCREMENT * diffY;
+    }
     update();
   }
 }
@@ -36,7 +52,7 @@ void NGLScene::mouseMoveEvent( QMouseEvent* _event )
 void NGLScene::mousePressEvent( QMouseEvent* _event )
 {
   // that method is called when the mouse button is pressed in this case we
-  // store the value where the maouse was clicked (x,y) and set the Rotate flag to true
+  // store the value where the mouse was clicked (x,y) and set the Rotate flag to true
   if ( _event->button() == Qt::LeftButton )
   {
     m_win.origX  = _event->x();
