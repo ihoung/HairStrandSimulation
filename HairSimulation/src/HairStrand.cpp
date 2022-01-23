@@ -8,7 +8,7 @@
 HairStrand::HairStrand(std::size_t _numParticles, float totalLength) :m_numParticles{ _numParticles }, m_length{totalLength}
 {
   resetHairStrand();
-  m_vao = ngl::VAOFactory::createVAO(ngl::simpleVAO, GL_POINTS);
+  m_vao = ngl::VAOFactory::createVAO(ngl::simpleVAO, GL_LINE_STRIP);
 }
 
 void HairStrand::render(ngl::Mat4 _view, ngl::Mat4 _project) const

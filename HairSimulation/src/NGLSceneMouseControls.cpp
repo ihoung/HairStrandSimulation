@@ -17,7 +17,7 @@ void NGLScene::mouseMoveEvent( QMouseEvent* _event )
 
     if (m_win.camera_mode)
     {
-      m_mainCamera->spinCamera({ INCREMENT * diffx, INCREMENT * diffy });
+      m_mainCamera->rotCamera({ -0.1f * diffx, -0.1f * diffy });
     }
     else
     {

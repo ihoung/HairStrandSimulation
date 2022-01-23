@@ -7,6 +7,7 @@ Camera::Camera(ngl::Vec3 _eye, ngl::Vec3 _center, ngl::Vec3 _up, float _fovy, fl
   m_up.normalize();
   updateViewMat();
   m_project = ngl::perspective(m_fovy, m_aspect, m_zNear, m_zFar);
+  m_rot.identity();
 }
 
 void Camera::updateViewMat()
@@ -16,7 +17,9 @@ void Camera::updateViewMat()
 
 ngl::Mat4 Camera::getViewMat() const
 {
-  return m_view;
+  auto mat = m_rot;
+  mat.transpose();
+  return mat * m_view;
 }
 
 ngl::Mat4 Camera::getProjectMat() const
@@ -34,16 +37,12 @@ void Camera::translateCamera(ngl::Vec2 _diff)
   updateViewMat();
 }
 
-void Camera::spinCamera(ngl::Vec2 _diff)
+void Camera::rotCamera(ngl::Vec2 _diff)
 {
   ngl::Mat4 rotX, rotY;
   rotX.rotateX(_diff.m_x);
   rotY.rotateY(_diff.m_y);
-  auto rot = rotX * rotY;
-  m_eye = rot * m_eye;
-  auto up = (rot * ngl::Vec4(m_up, 0));
-  m_up = ngl::Vec3{ up.m_x, up.m_y, up.m_z };
-  updateViewMat();
+  m_rot *= rotX * rotY;
 }
 
 void Camera::setCamera(ngl::Vec3 _eye, ngl::Vec3 _center, ngl::Vec3 _up, float _fovy, float _aspect, float _zNear, float _zFar)
@@ -58,4 +57,5 @@ void Camera::setCamera(ngl::Vec3 _eye, ngl::Vec3 _center, ngl::Vec3 _up, float _
   m_zFar = _zFar;
   updateViewMat();
   m_project = ngl::perspective(m_fovy, m_aspect, m_zNear, m_zFar);
+  m_rot.identity();
 }
