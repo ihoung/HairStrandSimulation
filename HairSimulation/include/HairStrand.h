@@ -5,7 +5,7 @@
 #include <memory>
 #include <ngl/SimpleVAO.h>
 #include <ngl/Mat4.h>
-#include "Particle.h"
+#include "Particle.hpp"
 
 class HairStrand
 {

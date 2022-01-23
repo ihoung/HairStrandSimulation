@@ -51,12 +51,16 @@ target_sources(${TargetName} PRIVATE ${PROJECT_SOURCE_DIR}/src/main.cpp
 			${PROJECT_SOURCE_DIR}/src/Random.cpp 
 			${PROJECT_SOURCE_DIR}/src/HairStrand.cpp
 			${PROJECT_SOURCE_DIR}/src/Camera.cpp
+			${PROJECT_SOURCE_DIR}/src/Force.cpp
+			${PROJECT_SOURCE_DIR}/src/Simulator.cpp
 			${PROJECT_SOURCE_DIR}/include/NGLScene.h
 			${PROJECT_SOURCE_DIR}/include/MainWindow.h
 			${PROJECT_SOURCE_DIR}/include/Random.h  
-			${PROJECT_SOURCE_DIR}/include/Particle.h 
+			${PROJECT_SOURCE_DIR}/include/Particle.hpp
 			${PROJECT_SOURCE_DIR}/include/HairStrand.h 
-			${PROJECT_SOURCE_DIR}/include/Camera.h)
+			${PROJECT_SOURCE_DIR}/include/Camera.h 
+			${PROJECT_SOURCE_DIR}/include/Force.h 			
+			${PROJECT_SOURCE_DIR}/include/Simulator.h 	)
 
 if ( Qt6_FOUND )
 	target_link_libraries(${TargetName} PRIVATE  NGL Qt::Widgets Qt::OpenGL Qt::OpenGLWidgets)
@@ -77,10 +81,15 @@ find_package(GTest CONFIG REQUIRED)
 include(GoogleTest)
 enable_testing()
 add_executable(HairSimulationTests)
-target_sources(HairSimulationTests PRIVATE ${PROJECT_SOURCE_DIR}/tests/HairTests.cpp
+target_sources(HairSimulationTests PRIVATE ${PROJECT_SOURCE_DIR}/tests/mainTest.cpp
+											${PROJECT_SOURCE_DIR}/tests/HairTest.cpp
+											${PROJECT_SOURCE_DIR}/tests/CameraTest.cpp
+											${PROJECT_SOURCE_DIR}/tests/ForceTest.cpp
 											${PROJECT_SOURCE_DIR}/src/HairStrand.cpp
-											${PROJECT_SOURCE_DIR}/include/Particle.h 
+											${PROJECT_SOURCE_DIR}/src/Force.cpp
+											${PROJECT_SOURCE_DIR}/include/Particle.hpp
 											${PROJECT_SOURCE_DIR}/include/HairStrand.h 
-											${PROJECT_SOURCE_DIR}/include/Camera.h)
+											${PROJECT_SOURCE_DIR}/include/Camera.h
+											${PROJECT_SOURCE_DIR}/include/Force.h 			)
 target_link_libraries(HairSimulationTests PRIVATE GTest::gtest GTest::gtest_main)
 gtest_discover_tests(HairSimulationTests)

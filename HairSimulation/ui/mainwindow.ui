@@ -115,7 +115,7 @@ Translate: Alt+RMB</string>
      <property name="geometry">
       <rect>
        <x>130</x>
-       <y>10</y>
+       <y>30</y>
        <width>161</width>
        <height>20</height>
       </rect>
@@ -152,7 +152,7 @@ Translate: Alt+RMB</string>
      <property name="geometry">
       <rect>
        <x>10</x>
-       <y>10</y>
+       <y>30</y>
        <width>111</width>
        <height>20</height>
       </rect>
@@ -165,7 +165,7 @@ Translate: Alt+RMB</string>
      <property name="geometry">
       <rect>
        <x>10</x>
-       <y>40</y>
+       <y>90</y>
        <width>111</width>
        <height>20</height>
       </rect>
@@ -177,8 +177,8 @@ Translate: Alt+RMB</string>
     <widget class="QSlider" name="m_hairLengthSlider">
      <property name="geometry">
       <rect>
-       <x>129</x>
-       <y>40</y>
+       <x>130</x>
+       <y>90</y>
        <width>161</width>
        <height>20</height>
       </rect>
@@ -206,7 +206,7 @@ Translate: Alt+RMB</string>
      <property name="geometry">
       <rect>
        <x>10</x>
-       <y>90</y>
+       <y>160</y>
        <width>281</width>
        <height>221</height>
       </rect>
@@ -218,7 +218,7 @@ Translate: Alt+RMB</string>
       <property name="geometry">
        <rect>
         <x>10</x>
-        <y>120</y>
+        <y>140</y>
         <width>101</width>
         <height>20</height>
        </rect>
@@ -237,7 +237,7 @@ Translate: Alt+RMB</string>
       <property name="geometry">
        <rect>
         <x>120</x>
-        <y>120</y>
+        <y>140</y>
         <width>151</width>
         <height>20</height>
        </rect>
@@ -253,7 +253,7 @@ Translate: Alt+RMB</string>
       <property name="geometry">
        <rect>
         <x>10</x>
-        <y>29</y>
+        <y>49</y>
         <width>81</width>
         <height>21</height>
        </rect>
@@ -269,7 +269,7 @@ Translate: Alt+RMB</string>
       <property name="geometry">
        <rect>
         <x>10</x>
-        <y>50</y>
+        <y>70</y>
         <width>16</width>
         <height>20</height>
        </rect>
@@ -282,7 +282,7 @@ Translate: Alt+RMB</string>
       <property name="geometry">
        <rect>
         <x>25</x>
-        <y>50</y>
+        <y>70</y>
         <width>51</width>
         <height>25</height>
        </rect>
@@ -292,7 +292,7 @@ Translate: Alt+RMB</string>
       <property name="geometry">
        <rect>
         <x>96</x>
-        <y>50</y>
+        <y>70</y>
         <width>16</width>
         <height>20</height>
        </rect>
@@ -305,7 +305,7 @@ Translate: Alt+RMB</string>
       <property name="geometry">
        <rect>
         <x>115</x>
-        <y>50</y>
+        <y>70</y>
         <width>51</width>
         <height>25</height>
        </rect>
@@ -315,7 +315,7 @@ Translate: Alt+RMB</string>
       <property name="geometry">
        <rect>
         <x>185</x>
-        <y>50</y>
+        <y>70</y>
         <width>16</width>
         <height>20</height>
        </rect>
@@ -328,7 +328,7 @@ Translate: Alt+RMB</string>
       <property name="geometry">
        <rect>
         <x>200</x>
-        <y>50</y>
+        <y>70</y>
         <width>51</width>
         <height>25</height>
        </rect>

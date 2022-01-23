@@ -8,7 +8,7 @@
 HairStrand::HairStrand(std::size_t _numParticles, float totalLength) :m_numParticles{ _numParticles }, m_length{totalLength}
 {
   resetHairStrand();
-  m_vao = ngl::VAOFactory::createVAO(ngl::simpleVAO, GL_LINE_STRIP);
+  m_vao = ngl::VAOFactory::createVAO(ngl::simpleVAO, GL_POINTS);
 }
 
 void HairStrand::render(ngl::Mat4 _view, ngl::Mat4 _project) const
@@ -16,7 +16,7 @@ void HairStrand::render(ngl::Mat4 _view, ngl::Mat4 _project) const
   ngl::ShaderLib::setUniform("MVP", _project * _view);
   glPointSize(3);
   m_vao->bind();
-  m_vao->setData(ngl::SimpleVAO::VertexData(m_numParticles * sizeof(ngl::Vec3), m_points[0].pos.m_x));
+  m_vao->setData(ngl::SimpleVAO::VertexData(m_numParticles * sizeof(Particle), m_points[0].pos.m_x));
   m_vao->setVertexAttributePointer(0, 3, GL_FLOAT, sizeof(Particle), 0);
   m_vao->setNumIndices(m_numParticles);
   glEnable(GL_PROGRAM_POINT_SIZE);
