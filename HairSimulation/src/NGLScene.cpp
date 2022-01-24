@@ -42,12 +42,12 @@ void NGLScene::initializeGL()
   // initialize main camera
   m_mainCamera = std::make_unique<Camera>(CAMERA_EYE, CAMERA_CENTER, CAMERA_UP);
 
-   ngl::ShaderLib::loadShader(HairShader, "shaders/HairVertex.glsl", "shaders/HairFragment.glsl");
-   ngl::ShaderLib::use(HairShader);
-  // startTimer(10);
+  ngl::ShaderLib::loadShader(HairShader, "shaders/HairVertex.glsl", "shaders/HairFragment.glsl");
+  ngl::ShaderLib::use(HairShader);
+  startTimer(10);
 
-   m_strand = std::make_shared<HairStrand>(10, 5.0f);
-   m_simulator = std::make_unique<Simulator>(m_strand);
+  m_strand = std::make_shared<HairStrand>(10, 5.0f);
+  m_simulator = std::make_unique<Simulator>(m_strand);
 }
 
 
