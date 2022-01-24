@@ -106,7 +106,7 @@ void NGLScene::keyReleaseEvent(QKeyEvent *_event)
     update();
 }
 
-void NGLScene::timerEvent(QTimerEvent *_timer)
+void NGLScene::timerEvent(QTimerEvent *_event)
 {
    update();
 }
