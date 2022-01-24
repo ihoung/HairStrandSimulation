@@ -8,7 +8,7 @@
 HairStrand::HairStrand(std::size_t _numParticles, float totalLength, float _damping) :m_numParticles{ _numParticles }, m_length{ totalLength }, m_damping{ _damping }
 {
   resetHairStrand();
-  m_vao = ngl::VAOFactory::createVAO(ngl::simpleVAO, GL_POINTS);
+  m_vao = ngl::VAOFactory::createVAO(ngl::simpleVAO, GL_LINE_STRIP);
 }
 
 std::size_t HairStrand::getNumParticles() const

@@ -14,7 +14,7 @@ Force::Force(ngl::Vec3 _value)
 	m_dir.normalize();
 }
 
-Force &Force::operator+(const Force &rhs) const
+Force Force::operator+(const Force &rhs) const
 {
   return Force(this->m_dir * this->m_magn + rhs.m_dir * rhs.m_magn);
 }

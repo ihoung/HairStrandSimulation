@@ -10,7 +10,7 @@ public:
   ngl::Vec3 getForceValue() const;
   ngl::Vec3 getDirection() const;
   float getMagnitude() const;
-  Force &operator+(const Force &) const;
+  Force operator+(const Force &) const;
   bool operator==(const Force &) const;
   Force &operator+=(const Force &);
   Force &operator=(const Force &);
