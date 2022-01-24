@@ -118,7 +118,7 @@ private:
     // current wind direction
     ngl::Vec3 m_curWindDir{ 1.0f,0.0f,0.0f };
     // wind force (the magnitude of the force)
-    float m_windForce;
+    float m_windForce = 0.0f;
 };
 
 
