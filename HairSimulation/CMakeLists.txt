@@ -48,14 +48,12 @@ target_sources(${TargetName} PRIVATE ${PROJECT_SOURCE_DIR}/src/main.cpp
 			${PROJECT_SOURCE_DIR}/src/NGLScene.cpp  
             ${PROJECT_SOURCE_DIR}/src/MainWindow.cpp
 			${PROJECT_SOURCE_DIR}/src/NGLSceneMouseControls.cpp 
-			${PROJECT_SOURCE_DIR}/src/Random.cpp 
 			${PROJECT_SOURCE_DIR}/src/HairStrand.cpp
 			${PROJECT_SOURCE_DIR}/src/Camera.cpp
 			${PROJECT_SOURCE_DIR}/src/Force.cpp
 			${PROJECT_SOURCE_DIR}/src/Simulator.cpp
 			${PROJECT_SOURCE_DIR}/include/NGLScene.h
 			${PROJECT_SOURCE_DIR}/include/MainWindow.h
-			${PROJECT_SOURCE_DIR}/include/Random.h  
 			${PROJECT_SOURCE_DIR}/include/Particle.hpp
 			${PROJECT_SOURCE_DIR}/include/HairStrand.h 
 			${PROJECT_SOURCE_DIR}/include/Camera.h 

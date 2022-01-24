@@ -19,6 +19,7 @@
 //----------------------------------------------------------------------------------------------------------------------
 #include "Camera.h"
 #include "HairStrand.h"
+#include "Simulator.h"
 
 class NGLScene : public QOpenGLWidget
 {
@@ -51,6 +52,14 @@ public slots:
     void resetCamera();
     void changeHairPrecision(int);
     void changeHairLength(int);
+    void changeHairDamping(int);
+    void changeTimeStep(double);
+    void changeStimulationStatus(int);
+    void changeWindDirX(double);
+    void changeWindDirY(double);
+    void changeWindDirZ(double);
+    void applyWindDirChanged();
+    void changeWindForce(int);
 
 private:
 
@@ -99,7 +108,17 @@ private:
     // main camera
     std::unique_ptr<Camera> m_mainCamera;
 
-    std::unique_ptr<HairStrand> m_strand;
+    std::shared_ptr<HairStrand> m_strand;
+    std::unique_ptr<Simulator> m_simulator;
+
+    bool m_isSimulationOn = false;
+
+    // wind direction setting of UI that applied after button clicked
+    ngl::Vec3 m_windDirCache{ 1.0f,0.0f,0.0f };
+    // current wind direction
+    ngl::Vec3 m_curWindDir{ 1.0f,0.0f,0.0f };
+    // wind force (the magnitude of the force)
+    float m_windForce;
 };
 
 

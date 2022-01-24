@@ -2,14 +2,16 @@
 
 Force::Force(ngl::Vec3 _dir, float _magn) :m_dir{ _dir }, m_magn{ _magn }
 {
-  m_dir.normalize();
+  if (m_dir.length() != 0.0f)
+	m_dir.normalize();
 }
 
 Force::Force(ngl::Vec3 _value)
 {
-  m_dir = _value;
-  m_dir.normalize();
   m_magn = _value.length();
+  m_dir = _value;
+  if (m_magn != 0.0f)
+	m_dir.normalize();
 }
 
 Force &Force::operator+(const Force &rhs) const
@@ -27,7 +29,8 @@ Force &Force::operator+=(const Force &rhs)
   auto v = m_dir * m_magn + rhs.m_dir * rhs.m_magn;
   m_magn = v.length();
   m_dir = v;
-  m_dir.normalize();
+  if (m_magn != 0.0f)
+	m_dir.normalize();
   return *this;
 }
 

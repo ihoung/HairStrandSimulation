@@ -5,10 +5,35 @@
 #include <ngl/Util.h>
 #include <ngl/VAOFactory.h>
 
-HairStrand::HairStrand(std::size_t _numParticles, float totalLength) :m_numParticles{ _numParticles }, m_length{totalLength}
+HairStrand::HairStrand(std::size_t _numParticles, float totalLength, float _damping) :m_numParticles{ _numParticles }, m_length{ totalLength }, m_damping{ _damping }
 {
   resetHairStrand();
   m_vao = ngl::VAOFactory::createVAO(ngl::simpleVAO, GL_POINTS);
+}
+
+std::size_t HairStrand::getNumParticles() const
+{
+  return m_numParticles;
+}
+
+std::vector<Particle> &HairStrand::getParticles()
+{
+  return m_points;
+}
+
+float HairStrand::getSegmentLen() const
+{
+  return m_pDistance;
+}
+
+void HairStrand::setDamping(float _damping)
+{
+  m_damping = _damping;
+}
+
+float HairStrand::getDamping() const
+{
+  return m_damping;
 }
 
 void HairStrand::render(ngl::Mat4 _view, ngl::Mat4 _project) const
@@ -46,11 +71,11 @@ void HairStrand::resetHairStrand()
 {
   m_points.resize(m_numParticles);
   float curPosY = 3.0f;
-  float pDistance = m_length / (float)(m_numParticles - 1);
+  m_pDistance = m_length / (float)(m_numParticles - 1);
   for (std::uint32_t i = 0; i < m_numParticles; ++i)
   {
     m_points[i]=Particle({ 0, curPosY, 0 });
-    curPosY -= pDistance;
+    curPosY -= m_pDistance;
 
   }
 }

@@ -12,3 +12,12 @@ TEST(HairStrand, render)
 //  ASSERT_EQ(p.pos.m_y, 2.0f);
 }
 
+TEST(HairStrand, transformParticle)
+{
+  HairStrand strand = HairStrand(11, 5.0f);
+  auto particles = strand.getParticles();
+  ASSERT_EQ(particles[10].pos.m_y, -2.0f);
+  particles[10].pos += ngl::Vec3{ 1.0f,0.0f,1.0f };
+  ASSERT_TRUE(particles[10].pos == (ngl::Vec3{ 1.0f,-2.0f,1.0f }));
+}
+
